@@ -48,6 +48,7 @@ body{
     margin: 0;
     opacity: 0;
 }
+
 #inputNumber{
     font-size: 7vw;
     max-width: 900px;    
