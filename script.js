@@ -6,19 +6,13 @@ let outputBases = [];
 let convertedNumber = [];
 let results = document.getElementById("results");
 let x = 0;
-let addedBase = [];
-let outputWidth = 0;
-
 
 function receiveNumber() {
-    //receive the number and its base selected by the user
+    //Esta função recebe o número 
     let inputNumberElement = document.getElementById("inputNumber");
     let inputNumber = inputNumberElement.value.toString();
     digits = inputNumber.split('');
 
-    /*if (digits.length >= 7 && digits.length <= 10) {
-        inputNumberElement.style.width = (325 + (digits.length - 7) * 4) + "vw";
-    }*/
     if (innerWidth > 1480) {
         if (digits.length >= 9 && digits.length < 11) {
             inputNumberElement.style.fontSize = 6 - (digits.length - 9) + 'vw';
@@ -27,7 +21,6 @@ function receiveNumber() {
     inputBase = document.getElementById("base");
     if (inputBase.value != "" && inputNumber != "") {
 
-        //if the base is different to 10, it will be converted to it
         if (inputBase.value != 10) {
             inputNumber = toDecimal(digits, inputBase.value);
         }
@@ -37,7 +30,7 @@ function receiveNumber() {
 }
 
 function convertToBase(num) {
-    //this function converts the 'inputNumber' into the default bases
+    //Esta função converte o número recebido para a respetiva base
     convertedNumber = [];
     outputBases = [];
     for (var base of basesConverter) {
@@ -71,7 +64,6 @@ function printResults() {
     let i = 0;
     var t = 1;
     for (converted of convertedNumber) {
-        //let result = document.createElement('div');
         let baseIndication = document.createElement('div');
         baseIndication.setAttribute('id', 'content-areas');
 
@@ -79,42 +71,37 @@ function printResults() {
         inputArea.classList.add('showed-results');
         inputArea.style.height = '40vh';
 
-        //inputArea.style.transform = 'scale(0.9)';
-        //inputField.style.animation = 'scaling-input-field 350ms ease 0s forwards';
         inputArea.style.alignContent = 'flex-end';
 
-
-        //let num = document.getElementsByClassName('converted-number');
-        //console.log(num[0].style.width); 
 
         converted = converted.reverse().join('');
         switch (outputBases[i]) {
             case '(2)':
 
-                baseIndication.innerHTML = `<p class="base-indicator"><strong>Base</strong> Binária</p>
+                baseIndication.innerHTML = `<p class="base-indicator">Base <strong>Binária</strong> </p>
                                             <div class="divider" id="div-bin"></div>
                                             <input class="converted-number" id="bin" value="${converted}"> 
                                             </button>`;
-                //result.innerText = converted;
+        
                 results.appendChild(baseIndication);
-                //results.appendChild(result);
+               
                 break;
             case '(8)':
-                baseIndication.innerHTML = `<p class="base-indicator"><strong>Base</strong> Octal</p>
+                baseIndication.innerHTML = `<p class="base-indicator">Base <strong>Octal</strong> </p>
                                             <div class="divider" id="div-oct"></div>
                                             <input class="converted-number" id="oct" value="${converted}">
                                             </button>`;
                 results.appendChild(baseIndication);
                 break;
             case '(10)':
-                baseIndication.innerHTML = `<p class="base-indicator"><strong>Base</strong> Decimal</p>
+                baseIndication.innerHTML =`<p class="base-indicator">Base <strong>Decimal</strong> </p>
                                             <div class="divider" id="div-dec"></div>
                                             <input class="converted-number" id="dec" value="${converted}">
                                             </button>`;
                 results.appendChild(baseIndication);
                 break;
             case '(16)':
-                baseIndication.innerHTML = `<p class="base-indicator"><strong>Base</strong> Hexadecimal</p>
+                baseIndication.innerHTML = `<p class="base-indicator">Base <strong>Hexadecimal</strong> </p>
                                             <div class="divider" id="div-hex"></div>
                                             <input class="converted-number" id="hex" value="${converted}">
                                             </button>`;
@@ -142,7 +129,7 @@ function printResults() {
 
         }
         let wideQuotient = ((converted.length / window.innerWidth).toFixed(5)) * 100;
-        //console.log(wideQuotient);
+
         if (wideQuotient > 1.4 && innerWidth < 2700) {
 
             var overflowIndicator;
@@ -174,12 +161,11 @@ function printResults() {
 
 function toDecimal(digits, base) {
 
-    //this function converts the 'inputNumber' into the 10 base
     digits.reverse();
     let i = 0;
     let numDecimal = 0;
     if (base > 10) {
-        //if the base is greater than 10, it is necessary to add new algorisms (a-f)
+        
         digits.forEach(replaceChar)
     }
     for (digit of digits) {
@@ -190,7 +176,7 @@ function toDecimal(digits, base) {
 }
 function fromDecimal(num, base) {
 
-    //this function converts numbers in the 10 base to others
+    
     outputNumber = [];
 
     if (num < base) {
@@ -211,7 +197,6 @@ function fromDecimal(num, base) {
 }
 function replaceChar(digit) {
 
-    //this function replace the letters (A-F) to the correspondent number
     let modChar = digit.toUpperCase();
     switch (modChar) {
         case "A":
@@ -237,7 +222,6 @@ function replaceChar(digit) {
 
 function replaceNum(digit) {
 
-    //this function replace the digits greater than 10 to letters
     let modNum = Number(digit);
     switch (modNum) {
         case 10:
@@ -260,6 +244,7 @@ function replaceNum(digit) {
             break;
     }
 }
+
 
 
 
